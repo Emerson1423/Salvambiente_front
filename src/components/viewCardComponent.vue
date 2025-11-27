@@ -8,7 +8,7 @@
           <img :src="require(`@/assets/img/${icon}`)" :alt="title" />
         </div>
         <div class="title">{{ title }}</div>
-        <div class="flip-hint">Click para más info</div>
+       
       </div>
       
       <!-- Reverso de la tarjeta -->
@@ -68,7 +68,6 @@ export default {
   cursor: pointer;
   height: 240px;
   perspective: 1000px;
-  /* hereda la tipografía global del sitio */
   position: relative;
   z-index: 1;
 }
@@ -78,7 +77,6 @@ export default {
   z-index: 10;
 }
 
-/* no cambiamos z-index al hacer hover sobre el contenedor: evita reordenamientos visuales */
 .flip-card:hover{
   z-index: 1;
 }
@@ -117,7 +115,7 @@ export default {
   box-sizing: border-box;
 }
 
-/* Frente de la tarjeta - Diseño más premium */
+/* Frente de la tarjeta */
 .flip-card-front {
   background: linear-gradient(135deg, #ffffff 0%, #f8fdf9 100%);
   color: #0a3d1f;
@@ -175,16 +173,8 @@ export default {
   letter-spacing: -0.3px;
 }
 
-.flip-hint {
-  font-size: 0.75rem;
-  color: #6b7280;
-  opacity: 0.6;
-  margin-top: 8px;
-  font-weight: 500;
-  transition: opacity 0.3s ease;
-}
 
-.flip-card:hover .flip-hint {
+.flip-card:hover  {
   opacity: 1;
 }
 
@@ -242,7 +232,6 @@ export default {
   font-size: 0.95rem;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  /* hereda la tipografía global del sitio */
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   display: flex;
   align-items: center;
@@ -334,9 +323,7 @@ export default {
     border-radius: 20px;
   }
 
-  .flip-hint {
-    font-size: 0.7rem;
-  }
+
 }
 
 @media (max-width: 359px) {
