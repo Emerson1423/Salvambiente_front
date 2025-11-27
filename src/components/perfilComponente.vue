@@ -230,7 +230,6 @@ export default {
     }
 }
 </script>
-
 <style scoped>
 .caja-perfil {
     background-color: white;
@@ -273,15 +272,9 @@ export default {
     padding: 0 20px;
 }
 
-.seccion-izquierda {
+.seccion-izquierda, .seccion-derecha {
     display: flex;
     flex-direction: column;
-    gap: 30px;
-}
-
-.seccion-derecha {
-    display: grid;
-    grid-template-rows: auto 1fr;
     gap: 30px;
 }
 
@@ -292,6 +285,7 @@ export default {
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
     font-family: 'Poppins', sans-serif;
     position: relative;
+    flex: 1;
 }
 
 .seccion-habitos h2 {
@@ -469,16 +463,12 @@ export default {
 /* Tablets (768px - 1024px) - MANTENER 2 COLUMNAS */
 @media (max-width: 1024px) {
     .contenido-perfil {
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: 2fr 1fr; /* Mantener 2 columnas */
         gap: 20px;
         padding: 0 15px;
     }
     
-    .seccion-izquierda {
-        gap: 20px;
-    }
-    
-    .seccion-derecha {
+    .seccion-izquierda, .seccion-derecha {
         gap: 20px;
     }
     
@@ -506,17 +496,12 @@ export default {
 /* Móviles grandes (600px - 767px) - MANTENER 2 COLUMNAS CON AJUSTES */
 @media (max-width: 767px) {
     .contenido-perfil {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr; /* Mantener 2 columnas iguales */
         gap: 15px;
         padding: 0 10px;
     }
     
-    .seccion-izquierda {
-        gap: 15px;
-    }
-    
-    .seccion-derecha {
-        grid-template-rows: auto auto;
+    .seccion-izquierda, .seccion-derecha {
         gap: 15px;
     }
     
@@ -535,7 +520,7 @@ export default {
     
     .seccion-habitos h2 {
         font-size: 1.1rem;
-        flex-direction: row;
+        flex-direction: row; /* Mantener en línea */
         align-items: center;
         gap: 8px;
     }
@@ -575,17 +560,12 @@ export default {
     }
     
     .contenido-perfil {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr; /* Mantener 2 columnas */
         gap: 12px;
         padding: 0 8px;
     }
     
-    .seccion-izquierda {
-        gap: 12px;
-    }
-    
-    .seccion-derecha {
-        grid-template-rows: auto auto;
+    .seccion-izquierda, .seccion-derecha {
         gap: 12px;
     }
     
@@ -649,17 +629,12 @@ export default {
     }
     
     .contenido-perfil {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr; /* Mantener 2 columnas */
         gap: 10px;
         padding: 0 5px;
     }
     
-    .seccion-izquierda {
-        gap: 10px;
-    }
-    
-    .seccion-derecha {
-        grid-template-rows: auto auto;
+    .seccion-izquierda, .seccion-derecha {
         gap: 10px;
     }
     
@@ -729,10 +704,6 @@ export default {
     .contenido-perfil {
         grid-template-columns: 1fr 1fr;
         gap: 12px;
-    }
-    
-    .seccion-derecha {
-        grid-template-rows: auto auto;
     }
     
     .seccion-habitos {
