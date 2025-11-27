@@ -246,11 +246,7 @@ Minijuegos Educativos
   <span class="minigame-tag tag-purple">Quiz</span>
 </div>
 </div>
-<div class="minigame-card border-green">
-  <h4 class="minigame-title text-green">Título del Minijuego</h4>
-  <p class="minigame-desc">Descripción del minijuego de aventura</p>
-  <span class="minigame-tag tag-green">Aventura</span>
-</div>
+
 </section>
 
 <!-- Sección Hábitos -->
