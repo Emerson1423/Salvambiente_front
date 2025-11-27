@@ -136,7 +136,7 @@ export default {
                     return;
                 }
 
-                const response = await axios.get('http://localhost:3000/api/perfil', {
+                const response = await axios.get(`${process.env.VUE_APP_API_URL}/api/perfil`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
