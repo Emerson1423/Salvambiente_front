@@ -93,7 +93,7 @@ async handleSubmit() {
       }
     );
 
-    console.log('📥 Respuesta recibida:', response.data);
+    console.log('Respuesta recibida:', response.data);
 
     if (!response.data.token) {
       throw new Error('No se recibió token del servidor');
@@ -103,20 +103,20 @@ async handleSubmit() {
     localStorage.setItem('token', response.data.token);
     localStorage.setItem('usuario', JSON.stringify(response.data.usuario));
 
-    console.log('✅ Token guardado:', response.data.token.substring(0, 20) + '...');
-    console.log('✅ Usuario guardado:', response.data.usuario);
+    console.log('Token guardado:', response.data.token.substring(0, 20) + '...');
+    console.log('Usuario guardado:', response.data.usuario);
 
     // Disparar evento para actualizar navbar
    globalThis.dispatchEvent(new Event('authStateChanged'));
 
-    console.log('🏠 Redirigiendo a home...');
+    console.log('Redirigiendo a home...');
     
     // Redirigir
     this.$router.push('/');
     
   } catch (err) {
-    console.error('❌ Error completo:', err);
-    console.error('❌ Respuesta del servidor:', err.response);
+    console.error('Error completo:', err);
+    console.error('Respuesta del servidor:', err.response);
     
     this.error = err.response?.data?.error || 
                 err.message || 
