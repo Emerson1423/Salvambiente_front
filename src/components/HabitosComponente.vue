@@ -619,7 +619,6 @@ console.log('Todas las claves de hábitos:', Object.keys(localStorage).filter(k 
   margin-bottom: 30px;
 }
 .titulo-principal h1{
-  
   margin-top: 5%;
   font-size: 2.3rem;
   font-weight: bold;
@@ -627,12 +626,12 @@ console.log('Todas las claves de hábitos:', Object.keys(localStorage).filter(k 
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  
 }
+
 .contenido-habitos{
-  /* Usar la altura del header para no crear tanto espacio extra */
   margin-top: calc(var(--header-height, 60px) + 8px);
   font-family: 'Poppins', sans-serif;
+  padding: 0 10px;
 }
 
 /* Imagen destacada */
@@ -644,28 +643,40 @@ console.log('Todas las claves de hábitos:', Object.keys(localStorage).filter(k 
   object-fit: cover;
   height: 400px;
   border-radius: 16px;
-  
 }
 
 /* Grid de tarjetas */
 .cards-grid {
   display: grid;
-  /* Por defecto en móvil mostrar 2 columnas para 2x2; si es muy estrecho caer a 1 */
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  grid-template-columns: 1fr; /* 1 columna por defecto en móviles */
+  gap: 1.5rem;
   margin-bottom: 2rem;
-  padding: 0 1.5rem;
+  padding: 0 0.5rem;
 }
 
-@media (min-width: 600px) {
+/* Tablets pequeñas */
+@media (min-width: 480px) {
   .cards-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    gap: 1.2rem;
+    padding: 0 1rem;
   }
 }
 
-@media (min-width: 900px) {
+/* Tablets */
+@media (min-width: 768px) {
   .cards-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .cards-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+    gap: 2rem;
     padding: 0 2.5rem;
   }
 }
@@ -675,14 +686,15 @@ console.log('Todas las claves de hábitos:', Object.keys(localStorage).filter(k 
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  padding: 1.5rem;
+  padding: 1rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
-  min-height: 320px;
+  min-height: 280px;
+  width: 100%;
 }
 
 .viewcard:hover {
@@ -693,108 +705,208 @@ console.log('Todas las claves de hábitos:', Object.keys(localStorage).filter(k 
 /* Imagen de la tarjeta */
 .card-img {
   width: 100%;
-  max-width: 400px;
-  height: 160px;
+  height: 140px;
   object-fit: cover;
   border-radius: 8px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 /* Título y descripción */
 .card-title {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
   color: #2e7d32;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .card-desc {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #555;
   margin-bottom: 1rem;
   line-height: 1.4;
-  
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* Botón de tarjeta */
-.card-btn, .filter-btn {
+.filter-btn {
   background: #2e7d32;
   color: #fff;
   border: none;
   border-radius: 6px;
-  padding: 0.5rem 1.2rem;
-  cursor: pointer; 
+  padding: 0.6rem 1rem;
+  cursor: pointer;
   font-weight: 500;
   transition: all 0.2s ease;
-  margin-top: auto; 
-  width: min(70%, 100px);
-  align-self: center;
+  margin-top: auto;
+  width: 90%;
+  max-width: 140px;
+  font-size: 0.9rem;
 }
 
-.card-btn:hover {
+.filter-btn:hover {
   background: #45a049;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
 }
 
-
-
-@media (min-width: 768px) {
-  .title-habito {
-    font-size: 2rem;
-    margin: 2.5rem 0 2rem 0;
-  }
-}
-
-/* Contenedor de la imagen para mejor control */
-.img-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 2rem 0;
-  padding: 0 1rem;
-}
-
-
-
-@media (max-width: 768px) {
-  .img-hab {
-    height: 260px;
-    max-width: 92%;
-  }
-  
-  .title-habito {
-    font-size: 2rem;
-  }
-}
-
-/* Responsive para móviles */
+/* Móviles pequeños (320px - 480px) */
 @media (max-width: 480px) {
-  .img-hab {
-    height: 220px;
-    border-radius: 12px;
-  }
-  
-  .title-habito {
-    font-size: 2rem;
-    margin: 1.5rem 0 1rem 0;
-  }
-  
-  .img-container {
-    margin: 1.5rem 0;
-    padding: 0 0.5rem;
-  }
-
-  /* Mejorar presentación de tarjetas en pantallas muy pequeñas */
-  .cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+  .contenido-habitos {
     padding: 0 8px;
   }
 
+  .titulo-principal h1 {
+    font-size: 1.8rem;
+    margin-top: 3%;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .img-hab {
+    height: 200px;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 5px;
+  }
+
   .viewcard {
-    min-height: 220px;
-    padding: 12px;
+    min-height: 250px;
+    padding: 0.8rem;
+    margin: 0 auto;
+    max-width: 300px;
+  }
+
+  .card-img {
+    height: 120px;
+    margin-bottom: 0.6rem;
+  }
+
+  .card-title {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .card-desc {
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
+    -webkit-line-clamp: 3;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+    width: 85%;
+    max-width: 120px;
+  }
+}
+
+/* Tablets pequeñas (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .viewcard {
+    min-height: 260px;
+    padding: 1rem;
+  }
+
+  .card-img {
+    height: 130px;
+  }
+
+  .card-title {
+    font-size: 1.05rem;
+  }
+
+  .card-desc {
+    font-size: 0.88rem;
+  }
+}
+
+/* Tablets (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .contenido-habitos {
+    padding: 0 15px;
+  }
+
+  .img-hab {
+    height: 300px;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+
+  .viewcard {
+    min-height: 270px;
+  }
+
+  .card-img {
+    height: 140px;
+  }
+}
+
+/* Desktop pequeño (1024px - 1199px) */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .viewcard {
+    min-height: 290px;
+  }
+
+  .card-img {
+    height: 150px;
+  }
+}
+
+/* Desktop grande (1200px+) */
+@media (min-width: 1200px) {
+  .cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .viewcard {
+    min-height: 320px;
+    padding: 1.5rem;
+  }
+
+  .card-img {
+    height: 160px;
+  }
+}
+
+/* Mejoras para pantallas muy pequeñas */
+@media (max-width: 360px) {
+  .titulo-principal h1 {
+    font-size: 1.6rem;
+  }
+
+  .img-hab {
+    height: 180px;
+  }
+
+  .viewcard {
+    min-height: 240px;
+    padding: 0.7rem;
   }
 
   .card-img {
@@ -802,20 +914,64 @@ console.log('Todas las claves de hábitos:', Object.keys(localStorage).filter(k 
   }
 
   .card-title {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .card-desc {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
+    -webkit-line-clamp: 3;
   }
 
   .filter-btn {
-    /* más compacto en pantallas muy pequeñas */
-    width: 60%;
-    padding: 8px 10px;
-    font-size: 0.9rem;
-    margin-top: 8px;
+    font-size: 0.82rem;
+    padding: 0.45rem 0.7rem;
   }
 }
 
+/* Orientación landscape en móviles */
+@media (max-height: 500px) and (orientation: landscape) {
+  .img-hab {
+    height: 150px;
+    margin-bottom: 1rem;
+  }
+
+  .viewcard {
+    min-height: 200px;
+  }
+
+  .card-img {
+    height: 80px;
+  }
+}
+
+/* Mejoras de accesibilidad y usabilidad */
+.viewcard:active {
+  transform: scale(0.98);
+}
+
+.filter-btn:active {
+  transform: scale(0.95);
+}
+
+/* Asegurar que las imágenes se carguen correctamente */
+.card-img {
+  background: #f5f5f5;
+}
+
+/* Loading state para imágenes */
+.card-img[src=""],
+.card-img:not([src]) {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
 </style>
