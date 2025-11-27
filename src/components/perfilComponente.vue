@@ -7,7 +7,6 @@
         
         <div class="contenido-perfil">
             <div class="seccion-derecha">
-                <!-- SECCIÓN DE HÁBITOS ACTUALIZADA -->
                 <div class="seccion-habitos">
                     <h2>
                         <i class="fas fa-leaf"></i> 
@@ -20,15 +19,15 @@
                             v-for="(habito, index) in habitosUsuario" 
                             :key="habito.id"
                             class="item-habito"
-                            :style="{ borderLeft: `4px solid ${obtenerColorBadge(index)}` }"
-                        >
+                            :style="{ borderLeft: `4px solid ${obtenerColorBadge(index)}` }">
+                        
                             <div class="habito-header">
                                 <h3>{{ habito.title }}</h3>
                                 <button 
                                     @click="eliminarHabito(index)"
                                     class="btn-eliminar"
-                                    title="Eliminar hábito"
-                                >
+                                    title="Eliminar hábito">
+                              
                                     Eliminar
                                 </button>
                             </div>
@@ -94,7 +93,7 @@ export default {
             isAuthenticated: true, 
             usuario: {
                 usuario: '',
-                id: null  // Agregar ID al objeto usuario
+                id: null  
             },
             usuarioId: null,
             habitosUsuario: [],
@@ -137,7 +136,7 @@ export default {
                     return;
                 }
 
-                const response = await axios.get(`${process.env.VUE_APP_API_URL}/api/perfil`, {
+                const response = await axios.get('http://localhost:3000/api/perfil', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -231,7 +230,6 @@ export default {
     }
 }
 </script>
-
 <style scoped>
 .caja-perfil {
     background-color: white;
@@ -256,158 +254,178 @@ export default {
 }
 
 .header-perfil h1 {
-    font-size: 2.2rem;
-    margin: 0;
-    font-family: 'Poppins', sans-serif;  
+  margin-top: 10%;
+  font-size: 2.3rem;
+  font-weight: bold;
+  color: #0b6d11;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px; 
 }
 
 .contenido-perfil {
     display: grid;
     grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .seccion-izquierda, .seccion-derecha {
     display: flex;
     flex-direction: column;
-    gap: 55px;
+    gap: 30px;
 }
 
 .seccion-habitos {
-    padding: 20px;
+    padding: 25px;
     background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
     font-family: 'Poppins', sans-serif;
     position: relative;
+    flex: 1;
 }
 
 .seccion-habitos h2 {
     color: #333;
     margin-top: 0;
     margin-bottom: 20px;
-    padding-bottom: 10px;
+    padding-bottom: 12px;
     border-bottom: 2px solid #e0e0e0;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    font-size: 1.4rem;
 }
 
 .lista-habitos {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 15px;
 }
 
 .item-habito {
     background: white;
     border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 12px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    position: relative;
 }
 
 .item-habito:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
 
 .habito-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    gap: 15px;
 }
 
 .habito-header h3 {
     margin: 0;
     color: #2e7d32;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     flex: 1;
+    line-height: 1.3;
 }
 
 .btn-eliminar {
-background: #FF4742;
-  border: 1px solid #FF4742;
-  border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 10px;
-  min-height: 20px;
-  outline: 0;
-  padding: 12px 14px;
-  text-align: center;
-
-
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    min-height: 35px;
+    padding: 10px 14px;
+    text-align: center;
+    transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
 .btn-eliminar:hover {
     background: #d32f2f;
-    transform: scale(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(255, 71, 66, 0.3);
 }
 
 .habito-descripcion {
     color: #666;
-    font-size: 0.9rem;
-    line-height: 1.4;
-    margin: 8px 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 12px 0;
 }
 
 .habito-info {
-    margin-top: 12px;
-    padding-top: 8px;
-    border-top: 1px solid #eee;
+    margin-top: 15px;
+    padding-top: 12px;
+    border-top: 1px solid #f0f0f0;
 }
 
 .fecha-agregado {
     color: #888;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
 }
 
 .sin-habitos {
     text-align: center;
-    padding: 30px;
-    color: #888;
+    padding: 40px 30px;
+    color: #666;
     background: #f8f9fa;
-    border-radius: 8px;
-    margin: 15px 0;
+    border-radius: 12px;
+    margin: 20px 0;
+    border: 2px dashed #ddd;
 }
 
 .sin-habitos i {
     color: #4caf50;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    opacity: 0.7;
+}
+
+.sin-habitos p {
+    margin: 8px 0;
+    line-height: 1.4;
 }
 
 .info-limite {
     background: #e8f5e9;
-    padding: 8px 12px;
-    border-radius: 6px;
-    margin-top: 10px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-top: 15px;
     color: #2e7d32;
     text-align: center;
+    border: 1px solid #c8e6c9;
 }
 
 .limite-alcanzado {
     background: #fff3cd;
-    padding: 8px 12px;
-    border-radius: 6px;
-    margin-top: 10px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-top: 15px;
     color: #856404;
     text-align: center;
+    border: 1px solid #ffeaa7;
 }
 
 .info-limite i,
 .limite-alcanzado i {
-    margin-right: 5px;
+    margin-right: 8px;
 }
 
 .contenido-historial {
@@ -426,38 +444,306 @@ background: #FF4742;
     background: linear-gradient(to right, #58a21c, #49ae27);
     color: white;
     border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
+    padding: 14px 28px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 1rem;
     margin-top: 20px;
+    transition: all 0.3s ease;
 }
 
 .btn-login:hover {
     background: linear-gradient(to right, #27ae60, #219653);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
 }
 
-@media (max-width: 768px) {
+/* ========== MEDIA QUERIES RESPONSIVE ========== */
+
+/* Tablets (768px - 1024px) - MANTENER 2 COLUMNAS */
+@media (max-width: 1024px) {
     .contenido-perfil {
-        grid-template-columns: 1fr;
+        grid-template-columns: 2fr 1fr; /* Mantener 2 columnas */
+        gap: 20px;
+        padding: 0 15px;
+    }
+    
+    .seccion-izquierda, .seccion-derecha {
+        gap: 20px;
+    }
+    
+    .header-perfil {
+        padding: 20px;
     }
     
     .header-perfil h1 {
-        font-size: 1.8rem;
+        font-size: 2.3rem;
+    }
+    
+    .seccion-habitos {
+        padding: 18px;
+    }
+    
+    .seccion-habitos h2 {
+        font-size: 1.2rem;
+    }
+    
+    .item-habito {
+        padding: 16px;
+    }
+}
+
+/* Móviles grandes (600px - 767px) - MANTENER 2 COLUMNAS CON AJUSTES */
+@media (max-width: 767px) {
+    .contenido-perfil {
+        grid-template-columns: 1fr 1fr; /* Mantener 2 columnas iguales */
+        gap: 15px;
+        padding: 0 10px;
+    }
+    
+    .seccion-izquierda, .seccion-derecha {
+        gap: 15px;
+    }
+    
+    .header-perfil {
+        padding: 15px;
+    }
+    
+    .header-perfil h1 {
+        font-size: 2.3rem;
+    }
+    
+    .seccion-habitos {
+        padding: 15px;
+        border-radius: 10px;
+    }
+    
+    .seccion-habitos h2 {
+        font-size: 1.1rem;
+        flex-direction: row; /* Mantener en línea */
+        align-items: center;
+        gap: 8px;
     }
     
     .item-habito {
         padding: 12px;
+        border-radius: 8px;
     }
     
     .habito-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
+        gap: 10px;
     }
     
     .btn-eliminar {
-        align-self: flex-end;
+        align-self: stretch;
+        min-height: 35px;
+        font-size: 11px;
+        padding: 8px 12px;
+    }
+    
+    .habito-header h3 {
+        font-size: 1rem;
+    }
+    
+    .habito-descripcion {
+        font-size: 0.9rem;
+    }
+}
+
+/* Móviles pequeños (480px - 599px) - MANTENER 2 COLUMNAS CON MÁS AJUSTES */
+@media (max-width: 599px) {
+    .caja-perfil {
+        padding: 15px 10px;
+        border-radius: 12px;
+    }
+    
+    .contenido-perfil {
+        grid-template-columns: 1fr 1fr; /* Mantener 2 columnas */
+        gap: 12px;
+        padding: 0 8px;
+    }
+    
+    .seccion-izquierda, .seccion-derecha {
+        gap: 12px;
+    }
+    
+    .header-perfil {
+        padding: 12px;
+        border-radius: 15px;
+    }
+    
+    .header-perfil h1 {
+        font-size: 2.3rem;
+    }
+    
+    .seccion-habitos {
+        padding: 12px;
+        border-radius: 8px;
+    }
+    
+    .seccion-habitos h2 {
+        font-size: 1rem;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+    }
+    
+    .item-habito {
+        padding: 10px;
+        border-radius: 6px;
+    }
+    
+    .habito-header h3 {
+        font-size: 0.9rem;
+    }
+    
+    .habito-descripcion {
+        font-size: 0.85rem;
+        margin: 8px 0;
+    }
+    
+    .sin-habitos {
+        padding: 20px 15px;
+    }
+    
+    .info-limite,
+    .limite-alcanzado {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .btn-eliminar {
+        min-height: 32px;
+        font-size: 10px;
+        padding: 6px 10px;
+    }
+}
+
+/* Móviles muy pequeños (hasta 479px) - MANTENER 2 COLUMNAS MÍNIMAS */
+@media (max-width: 479px) {
+    .caja-perfil {
+        padding: 12px 8px;
+        margin: 8px auto;
+        width: 98%;
+    }
+    
+    .contenido-perfil {
+        grid-template-columns: 1fr 1fr; /* Mantener 2 columnas */
+        gap: 10px;
+        padding: 0 5px;
+    }
+    
+    .seccion-izquierda, .seccion-derecha {
+        gap: 10px;
+    }
+    
+    .header-perfil {
+        padding: 10px;
+        border-radius: 12px;
+    }
+    
+    .header-perfil h1 {
+        font-size: 2.3rem;
+    }
+    
+    .seccion-habitos {
+        padding: 10px 8px;
+        border-radius: 6px;
+    }
+    
+    .seccion-habitos h2 {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+        padding-bottom: 6px;
+    }
+    
+    .item-habito {
+        padding: 8px;
+        border-radius: 5px;
+    }
+    
+    .habito-header {
+        gap: 8px;
+    }
+    
+    .habito-header h3 {
+        font-size: 0.85rem;
+    }
+    
+    .habito-descripcion {
+        font-size: 0.8rem;
+        margin: 6px 0;
+    }
+    
+    .habito-info {
+        margin-top: 8px;
+        padding-top: 6px;
+    }
+    
+    .fecha-agregado {
+        font-size: 0.75rem;
+    }
+    
+    .sin-habitos {
+        padding: 15px 10px;
+    }
+    
+    .sin-habitos i {
+        font-size: 1.2rem;
+    }
+    
+    .btn-eliminar {
+        min-height: 30px;
+        font-size: 9px;
+        padding: 5px 8px;
+    }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .contenido-perfil {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+    
+    .seccion-habitos {
+        padding: 10px;
+    }
+    
+    .item-habito {
+        padding: 8px;
+    }
+    
+    .habito-header {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .btn-eliminar {
+        min-height: 28px;
+        font-size: 9px;
+        padding: 4px 6px;
+    }
+}
+
+/* Ajustes específicos para pantallas muy estrechas */
+@media (max-width: 360px) {
+    .contenido-perfil {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+    
+    .seccion-habitos h2 {
+        font-size: 0.85rem;
+    }
+    
+    .habito-header h3 {
+        font-size: 0.8rem;
+    }
+    
+    .btn-eliminar {
+        font-size: 8px;
+        padding: 4px 6px;
     }
 }
 </style>
