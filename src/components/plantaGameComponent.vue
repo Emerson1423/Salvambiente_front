@@ -54,23 +54,11 @@
             
             <div class="stat score">
               <div class="stat-name">Puntuación</div>
-              <div class="stat-value">{{ score }}/{{ questionsAnswered }}</div>
+              <div class="stat-value">{{ score }}/{{ questions.length }}</div>
               <div class="progress-bar">
                 <div class="progress" :style="{ width: scoreProgress + '%' }"></div>
               </div>
             </div>
-            
-            <div class="stat">
-              <div class="stat-name">Racha</div>
-              <div class="stat-value">
-                {{ streak }} 
-                <span v-if="streak >= 3" class="streak-fire"></span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="game-message" :class="messageType">
-            {{ message }}
           </div>
         </div>
         
@@ -220,7 +208,6 @@ export default {
         growth: 0
       },
       score: 0,
-      streak: 0,
       questionsAnswered: 0,
       message: 'Cargando preguntas...',
       messageType: '',
@@ -436,7 +423,6 @@ export default {
 
         if (isCorrect) {
           this.score++;
-          this.streak++;
           
           // Solo crecimiento base cuando acierta
           this.plant.growth = Math.min(100, this.plant.growth + 10);
@@ -550,12 +536,12 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .initial-screen {
   max-width: 1200px;
   margin: 0 auto;
   margin-top: 10%;
+  padding: 0 20px;
 }
 
 .initial-screen header {
@@ -606,11 +592,12 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
   margin-top: 10%;
+  padding: 0 20px;
 }
 
 header {
   text-align: center;
-  margin-top:30px;
+  margin-top: 30px;
   margin-bottom: 30px;
   color: rgb(45, 56, 44);
 }
@@ -627,18 +614,19 @@ h1 {
 
 .game-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 30px;
-  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .plant-status {
-  flex: 1;
-  min-width: 300px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 2px solid #e8f5e8;
+  order: 1;
 }
 
 .plant-visual {
@@ -652,29 +640,38 @@ h1 {
 }
 
 .plant-img {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
   transition: all 0.5s ease;
 }
 
+.plant-visual h2 {
+  margin-top: 15px;
+  color: #2E7D32;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
 .stats {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 15px;
 }
 
 .stat {
-  background: #f5f5f5;
+  background: linear-gradient(135deg, #f8fff8, #e8f5e8);
   padding: 15px;
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: center;
+  border: 1px solid #c8e6c9;
 }
 
 .stat-name {
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   color: #2E7D32;
+  font-size: 0.9rem;
 }
 
 .stat-value {
@@ -684,70 +681,85 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 5px;
+  color: #1b5e20;
 }
 
+.streak-fire {
+  color: #ff6b35;
+  font-size: 1.1em;
+}
 
 .progress-bar {
   height: 10px;
   background: #e0e0e0;
-  border-radius: 5px;
-  margin-top: 5px;
+  border-radius: 6px;
+  margin-top: 8px;
   overflow: hidden;
+  border: 1px solid #ddd;
 }
 
 .progress {
   height: 100%;
-  border-radius: 5px;
+  border-radius: 6px;
   transition: width 0.5s;
 }
 
 .health .progress {
-  background: #4CAF50;
+  background: linear-gradient(90deg, #4CAF50, #66bb6a);
 }
 
 .growth .progress {
-  background: #FF9800;
+  background: linear-gradient(90deg, #FF9800, #ffb74d);
 }
 
 .score .progress {
-  background: #2196F3;
+  background: linear-gradient(90deg, #2196F3, #64b5f6);
 }
 
+/* Sección del quiz */
 .quiz-section {
-  flex: 2;
-  min-width: 300px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 2px solid #e8f5e8;
+  order: 2;
 }
 
 .quiz-info {
-  background: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(135deg, #e8f5e8, #f1f8e9);
   border-radius: 15px;
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 25px;
+  margin-bottom: 25px;
   text-align: center;
+  border: 1px solid #c8e6c9;
 }
 
 .current-question {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   margin-bottom: 15px;
   font-weight: bold;
   color: #2E7D32;
+  line-height: 1.4;
 }
 
 .question-counter {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #666;
+  font-weight: 600;
 }
 
+/* Cards de verdadero/falso */
 .cards-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .truth-card, .false-card {
-  height: 200px;
-  border-radius: 15px;
+  height: 160px;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -755,9 +767,10 @@ h1 {
   padding: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   text-align: center;
   position: relative;
+  border: 3px solid transparent;
 }
 
 .truth-card {
@@ -772,11 +785,11 @@ h1 {
 
 .truth-card:hover, .false-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
 .truth-card:active, .false-card:active {
-  transform: translateY(0);
+  transform: translateY(-2px);
 }
 
 .truth-card.disabled, .false-card.disabled {
@@ -786,50 +799,72 @@ h1 {
 }
 
 .truth-card.selected, .false-card.selected {
-  transform: scale(1.05);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.8);
+  transform: scale(1.03);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9);
+  border: 3px solid rgba(255, 255, 255, 0.8);
 }
 
 .truth-card.correct, .false-card.correct {
-  box-shadow: 0 0 0 4px #4CAF50, 0 0 20px rgba(76, 175, 80, 0.5);
+  box-shadow: 0 0 0 3px #4CAF50, 0 0 25px rgba(76, 175, 80, 0.5);
+  border: 3px solid #4CAF50;
 }
 
 .truth-card.incorrect, .false-card.incorrect {
-  box-shadow: 0 0 0 4px #F44336, 0 0 20px rgba(244, 67, 54, 0.5);
+  box-shadow: 0 0 0 3px #F44336, 0 0 25px rgba(244, 67, 54, 0.5);
+  border: 3px solid #F44336;
 }
 
 .feedback-icon {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 12px;
+  right: 12px;
   font-size: 1.5rem;
   font-weight: bold;
+  background: rgba(255, 255, 255, 0.9);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2E7D32;
+}
+
+.false-card .feedback-icon {
+  color: #C62828;
 }
 
 .card-text {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .explanation {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  padding: 15px;
-  margin-top: 15px;
-  border-left: 4px solid #aae448;
+  background: linear-gradient(135deg, #f1f8e9, #e8f5e8);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  border-left: 5px solid #4CAF50;
+  border: 1px solid #c8e6c9;
 }
 
 .explanation p {
   margin: 0;
   color: #333;
-  line-height: 1.4;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.explanation strong {
+  color: #2E7D32;
 }
 
 .game-message {
   margin-top: 20px;
-  padding: 15px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
   text-align: center;
   font-weight: bold;
   min-height: 60px;
@@ -837,26 +872,28 @@ h1 {
   align-items: center;
   justify-content: center;
   transition: all 0.3s;
+  font-size: 1.1rem;
+  border: 2px solid;
 }
 
 .positive {
   color: #4CAF50;
   background: rgba(76, 175, 80, 0.1);
-  border: 1px solid rgba(76, 175, 80, 0.3);
+  border-color: rgba(76, 175, 80, 0.3);
 }
 
 .negative {
   color: #F44336;
   background: rgba(244, 67, 54, 0.1);
-  border: 1px solid rgba(244, 67, 54, 0.3);
+  border-color: rgba(244, 67, 54, 0.3);
 }
 
+/* Game Over Section */
 .game-over-section {
-  flex: 2;
-  min-width: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
 }
 
 .game-over-card {
@@ -992,75 +1029,38 @@ h1 {
   justify-content: center;
 }
 
-.btn-primary, .btn-warning, .btn-info, .start-game-btn {
-  padding: 10px 20px;
-  border-radius: 20px;
+.btn-primary, .btn-warning, .btn-info {
+  padding: 12px 24px;
+  border-radius: 25px;
   cursor: pointer;
   font-weight: 600;
-  margin-top: 10px;
   border: none;
-  font-size: 0.9rem;
-  width: 100%;
-  max-width: 200px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  min-width: 150px;
 }
 
+.btn-primary {
+  background: #4CAF50;
+  color: white;
+}
 
 .btn-warning {
   background: #FF9800;
   color: white;
 }
 
-.btn-secondary {
-  background: #6c757d;
+.btn-info {
+  background: #2196F3;
   color: white;
 }
 
-.btn-primary, .start-game-btn {
-  background: #4CAF50;
-  color: white;
+.btn-primary:hover, .btn-warning:hover, .btn-info:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.modal-actions {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 15px;
-  flex-wrap: wrap;
-}
-
-.modal-close-btn {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #7f8c8d;
-  transition: color 0.2s;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-close-btn:hover{
-  color: #e74c3c;
- 
-}
-
-.leaderboard-modal {
-  max-width: 600px;
-}
-
-.leaderboard-container {
-  margin: 20px 0;
-  max-height: 400px;
-  overflow-y: auto;
-}
-
+/* Modals */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -1087,42 +1087,266 @@ h1 {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #7f8c8d;
+  transition: color 0.2s;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close-btn:hover{
+  color: #e74c3c;
+}
+
+.leaderboard-modal {
+  max-width: 600px;
+}
+
+.leaderboard-container {
+  margin: 20px 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
 .modal-content h2 {
   padding-right: 40px; 
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .modal-actions {
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+/* Desktop (1024px+) - Vista side-by-side */
+@media (min-width: 1024px) {
+  .game-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .plant-status {
+    flex: 0 0 350px;
+    position: sticky;
+    top: 20px;
+  }
+  
+  .quiz-section {
+    flex: 1;
+  }
+}
+
+/* Tablets (768px - 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .game-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .plant-status {
+    flex: 0 0 300px;
+  }
+  
+  .quiz-section {
+    flex: 1;
+  }
+  
+  .plant-img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Móviles (hasta 767px) - Una columna, diseño vertical */
+@media (max-width: 767px) {
+  .game-container {
+    gap: 20px;
+  }
+  
+  .plant-status,
+  .quiz-section {
+    padding: 20px;
+  }
+  
+  .plant-img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .stat {
+    padding: 12px;
+  }
+  
+  .stat-name {
+    font-size: 0.85rem;
+  }
+  
+  .stat-value {
+    font-size: 1.1rem;
+  }
+  
+  .truth-card, .false-card {
+    height: 140px;
+    padding: 15px;
+  }
+  
+  .card-text {
+    font-size: 1.4rem;
+  }
+  
+  .current-question {
+    font-size: 1.2rem;
+  }
+}
+
+/* Móviles pequeños (480px - 599px) */
+@media (max-width: 599px) {
+  .container,
+  .initial-screen {
+    padding: 0 15px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .plant-status,
+  .quiz-section {
+    padding: 18px;
+    border-radius: 16px;
+  }
+  
+  .plant-img {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .stat {
+    padding: 10px;
+  }
+  
+  .truth-card, .false-card {
+    height: 130px;
+    padding: 12px;
+  }
+  
+  .card-text {
+    font-size: 1.3rem;
+  }
+  
+  .current-question {
+    font-size: 1.1rem;
+  }
+}
+
+/* Móviles muy pequeños (hasta 479px) */
+@media (max-width: 479px) {
+  .container,
+  .initial-screen {
+    padding: 0 10px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  .plant-status,
+  .quiz-section {
+    padding: 15px;
+    border-radius: 14px;
+  }
+  
+  .plant-img {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .plant-visual h2 {
+    font-size: 1.1rem;
+  }
+  
+  .stats {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .truth-card, .false-card {
+    height: 120px;
+    padding: 10px;
+  }
+  
+  .card-text {
+    font-size: 1.2rem;
+  }
+  
+  .current-question {
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+  
+  .cards-container {
+    gap: 15px;
+  }
+  
+  .game-over-buttons {
     flex-direction: column;
     align-items: center;
   }
   
-  .btn-primary,
-  .btn-warning,
-  .btn-info,
-  .start-game-btn {
-    width: 100%;
-    max-width: 250px;
-  }
-  
-  .modal-actions button {
+  .btn-primary, .btn-warning, .btn-info {
     width: 100%;
     max-width: 250px;
   }
 }
 
-@media (max-width: 480px) {
-  .modal-content {
-    padding: 1.5rem;
+/* Orientación landscape en móviles */
+@media (max-height: 500px) and (orientation: landscape) {
+  .plant-img {
+    width: 70px;
+    height: 70px;
   }
   
-  .btn-primary,
-  .btn-warning,
-  .btn-info,
-  .start-game-btn {
-    padding: 10px 20px;
-    font-size: 0.9rem;
+  .truth-card, .false-card {
+    height: 100px;
+  }
+  
+  .card-text {
+    font-size: 1.1rem;
+  }
+  
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 </style>
