@@ -230,6 +230,7 @@ export default {
     }
 }
 </script>
+
 <style scoped>
 .caja-perfil {
     background-color: white;
@@ -270,12 +271,29 @@ export default {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    align-items: start;
 }
 
 .seccion-izquierda, .seccion-derecha {
     display: flex;
     flex-direction: column;
     gap: 30px;
+    align-items: stretch;
+    min-height: 100%;
+}
+
+.seccion-derecha {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.seccion-derecha > *:last-child {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .seccion-habitos {
@@ -285,7 +303,7 @@ export default {
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
     font-family: 'Poppins', sans-serif;
     position: relative;
-    flex: 1;
+    height: auto;
 }
 
 .seccion-habitos h2 {
@@ -463,13 +481,20 @@ export default {
 /* Tablets (768px - 1024px) - MANTENER 2 COLUMNAS */
 @media (max-width: 1024px) {
     .contenido-perfil {
-        grid-template-columns: 2fr 1fr; /* Mantener 2 columnas */
+        grid-template-columns: 2fr 1fr;
         gap: 20px;
         padding: 0 15px;
+        align-items: start;
     }
     
     .seccion-izquierda, .seccion-derecha {
         gap: 20px;
+        align-items: stretch;
+        min-height: 100%;
+    }
+    
+    .seccion-derecha {
+        justify-content: space-between;
     }
     
     .header-perfil {
@@ -496,13 +521,24 @@ export default {
 /* Móviles grandes (600px - 767px) - MANTENER 2 COLUMNAS CON AJUSTES */
 @media (max-width: 767px) {
     .contenido-perfil {
-        grid-template-columns: 1fr 1fr; /* Mantener 2 columnas iguales */
+        grid-template-columns: 1fr 1fr;
         gap: 15px;
         padding: 0 10px;
+        align-items: start;
     }
     
     .seccion-izquierda, .seccion-derecha {
         gap: 15px;
+        align-items: stretch;
+        min-height: auto;
+    }
+    
+    .seccion-derecha {
+        justify-content: flex-start;
+    }
+    
+    .seccion-derecha > *:last-child {
+        flex-grow: 0;
     }
     
     .header-perfil {
@@ -520,7 +556,7 @@ export default {
     
     .seccion-habitos h2 {
         font-size: 1.1rem;
-        flex-direction: row; /* Mantener en línea */
+        flex-direction: row;
         align-items: center;
         gap: 8px;
     }
@@ -560,13 +596,24 @@ export default {
     }
     
     .contenido-perfil {
-        grid-template-columns: 1fr 1fr; /* Mantener 2 columnas */
+        grid-template-columns: 1fr 1fr;
         gap: 12px;
         padding: 0 8px;
+        align-items: start;
     }
     
     .seccion-izquierda, .seccion-derecha {
         gap: 12px;
+        align-items: stretch;
+        min-height: auto;
+    }
+    
+    .seccion-derecha {
+        justify-content: flex-start;
+    }
+    
+    .seccion-derecha > *:last-child {
+        flex-grow: 0;
     }
     
     .header-perfil {
@@ -629,13 +676,24 @@ export default {
     }
     
     .contenido-perfil {
-        grid-template-columns: 1fr 1fr; /* Mantener 2 columnas */
+        grid-template-columns: 1fr 1fr;
         gap: 10px;
         padding: 0 5px;
+        align-items: start;
     }
     
     .seccion-izquierda, .seccion-derecha {
         gap: 10px;
+        align-items: stretch;
+        min-height: auto;
+    }
+    
+    .seccion-derecha {
+        justify-content: flex-start;
+    }
+    
+    .seccion-derecha > *:last-child {
+        flex-grow: 0;
     }
     
     .header-perfil {
@@ -704,6 +762,14 @@ export default {
     .contenido-perfil {
         grid-template-columns: 1fr 1fr;
         gap: 12px;
+    }
+    
+    .seccion-izquierda, .seccion-derecha {
+        align-items: stretch;
+    }
+    
+    .seccion-derecha > *:last-child {
+        flex-grow: 0;
     }
     
     .seccion-habitos {
