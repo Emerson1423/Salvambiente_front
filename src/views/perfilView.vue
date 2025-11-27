@@ -2,10 +2,6 @@
     <NavComponente></NavComponente>
     <br>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <perfilComponente></perfilComponente>
     <br>
     <footerComponente></footerComponente>
