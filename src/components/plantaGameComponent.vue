@@ -1033,7 +1033,7 @@ h1 {
   justify-content: center;
 }
 
-.btn-primary, .btn-warning, .btn-info {
+.btn-primary, .btn-secondary,.btn-warning, .btn-info {
   padding: 12px 24px;
   border-radius: 25px;
   cursor: pointer;
@@ -1053,8 +1053,6 @@ h1 {
   background: #FF9800;
   color: white;
 }
-
-
 
 .btn-primary:hover, .btn-warning:hover, .btn-info:hover {
   transform: translateY(-2px);
