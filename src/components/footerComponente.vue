@@ -34,7 +34,7 @@
             </li>
             <li>
               <i class="fas fa-phone"></i>
-              <span>+503 2257-7777</span>
+              <span>+503 2245-5399</span>
             </li>
             <li>
               <i class="fas fa-map-marker-alt"></i>
@@ -48,8 +48,6 @@
       <div class="copyright animate-on-scroll">
         <p>&copy; {{ currentYear }} Salvambiente. Todos los derechos reservados.</p>
         <div class="legal-links">
-          <p>Política de Privacidad</p>
-          <p>Términos de Servicio</p>
         </div>
       </div>
     </div>
