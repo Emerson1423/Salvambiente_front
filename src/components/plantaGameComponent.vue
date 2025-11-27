@@ -1014,6 +1014,10 @@ h1 {
   cursor: not-allowed;
   transform: none;
 }
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
 
 .login-warning {
   color: #ff6b6b;
