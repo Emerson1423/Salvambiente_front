@@ -138,7 +138,7 @@
           <button class="btn-warning" @click="reintentarJuego">
             Reintentar
           </button>
-          <button class="btn-info" @click="mostrarLeaderboard = true">
+          <button class="btn-secondary" @click="mostrarLeaderboard = true">
             Ver posiciones
           </button>
         </div>

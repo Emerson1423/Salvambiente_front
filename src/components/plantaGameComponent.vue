@@ -154,7 +154,7 @@
                 Volver al Inicio
               </button>
               <button @click="reintentarJuego" class="btn-warning">Jugar Otra Vez</button>
-              <button class="btn-info" @click="mostrarLeaderboard = true">
+              <button class="btn-secondary" @click="mostrarLeaderboard = true">
                 Ver posiciones
               </button>
             </div>
@@ -1050,10 +1050,7 @@ h1 {
   color: white;
 }
 
-.btn-info {
-  background: #2196F3;
-  color: white;
-}
+
 
 .btn-primary:hover, .btn-warning:hover, .btn-info:hover {
   transform: translateY(-2px);
