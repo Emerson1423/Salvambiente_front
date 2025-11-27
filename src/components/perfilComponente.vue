@@ -271,29 +271,18 @@ export default {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    align-items: start;
 }
 
-.seccion-izquierda, .seccion-derecha {
+.seccion-izquierda {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    align-items: stretch;
-    min-height: 100%;
 }
 
 .seccion-derecha {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: auto 1fr;
     gap: 30px;
-    align-items: stretch;
-    justify-content: space-between;
-}
-
-.seccion-derecha > *:last-child {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
 }
 
 .seccion-habitos {
@@ -303,7 +292,6 @@ export default {
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
     font-family: 'Poppins', sans-serif;
     position: relative;
-    height: auto;
 }
 
 .seccion-habitos h2 {
@@ -484,17 +472,14 @@ export default {
         grid-template-columns: 2fr 1fr;
         gap: 20px;
         padding: 0 15px;
-        align-items: start;
     }
     
-    .seccion-izquierda, .seccion-derecha {
+    .seccion-izquierda {
         gap: 20px;
-        align-items: stretch;
-        min-height: 100%;
     }
     
     .seccion-derecha {
-        justify-content: space-between;
+        gap: 20px;
     }
     
     .header-perfil {
@@ -524,21 +509,15 @@ export default {
         grid-template-columns: 1fr 1fr;
         gap: 15px;
         padding: 0 10px;
-        align-items: start;
     }
     
-    .seccion-izquierda, .seccion-derecha {
+    .seccion-izquierda {
         gap: 15px;
-        align-items: stretch;
-        min-height: auto;
     }
     
     .seccion-derecha {
-        justify-content: flex-start;
-    }
-    
-    .seccion-derecha > *:last-child {
-        flex-grow: 0;
+        grid-template-rows: auto auto;
+        gap: 15px;
     }
     
     .header-perfil {
@@ -599,21 +578,15 @@ export default {
         grid-template-columns: 1fr 1fr;
         gap: 12px;
         padding: 0 8px;
-        align-items: start;
     }
     
-    .seccion-izquierda, .seccion-derecha {
+    .seccion-izquierda {
         gap: 12px;
-        align-items: stretch;
-        min-height: auto;
     }
     
     .seccion-derecha {
-        justify-content: flex-start;
-    }
-    
-    .seccion-derecha > *:last-child {
-        flex-grow: 0;
+        grid-template-rows: auto auto;
+        gap: 12px;
     }
     
     .header-perfil {
@@ -679,21 +652,15 @@ export default {
         grid-template-columns: 1fr 1fr;
         gap: 10px;
         padding: 0 5px;
-        align-items: start;
     }
     
-    .seccion-izquierda, .seccion-derecha {
+    .seccion-izquierda {
         gap: 10px;
-        align-items: stretch;
-        min-height: auto;
     }
     
     .seccion-derecha {
-        justify-content: flex-start;
-    }
-    
-    .seccion-derecha > *:last-child {
-        flex-grow: 0;
+        grid-template-rows: auto auto;
+        gap: 10px;
     }
     
     .header-perfil {
@@ -764,12 +731,8 @@ export default {
         gap: 12px;
     }
     
-    .seccion-izquierda, .seccion-derecha {
-        align-items: stretch;
-    }
-    
-    .seccion-derecha > *:last-child {
-        flex-grow: 0;
+    .seccion-derecha {
+        grid-template-rows: auto auto;
     }
     
     .seccion-habitos {
