@@ -781,7 +781,6 @@ h1 {
   z-index: 1000;
   padding: 1rem;
 }
-
 .modal-content {
   background: white;
   border-radius: 12px;
@@ -793,55 +792,25 @@ h1 {
   position: relative;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
-
-.modal-close-btn {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #7f8c8d;
-  transition: color 0.2s;
-}
-
-.modal-close-btn:hover {
-  color: #e74c3c;
-}
-
-.modal-content h2 {
-  color: #2E7D32;
-  margin-bottom: 8px;
-  text-align: center;
-  padding-right: 40px;
-}
-
 .guide-subtitle {
   color: #666;
   text-align: center;
   margin-bottom: 20px;
   font-style: italic;
 }
-
+.info-section h3 {
+  margin: 15px 0;
+  text-align: center;
+}
 .info-section {
   margin: 15px 0;
   text-align: left;
 }
-
-.info-section h3 {
-  margin: 15px 0;
-  text-align: center;
-  color: #2E7D32;
-}
-
 .color-guide {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 10px;
-  margin: 1rem 0;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
 }
-
 .color-item {
   display: flex;
   align-items: flex-start;
@@ -849,205 +818,133 @@ h1 {
   padding: 10px;
   background: #f8f9fa;
   border-radius: 6px;
-  flex-direction: row; 
+  flex-direction: column;
 }
-
 .color-sample {
   width: 40px;
   height: 40px;
   object-fit: cover;
   border-radius: 4px;
-  flex-shrink: 0;
 }
-
 .color-info {
   flex: 1;
 }
-
 .color-info strong {
   font-size: 0.9rem;
-  color: #2c3e50;
-  display: block;
-  margin-bottom: 2px;
 }
-
-.color-info p {
-  font-size: 0.8rem;
-  color: #555;
-  margin: 2px 0;
-  line-height: 1.3;
-}
-
+.color-info p,
 .color-info small {
-  font-size: 0.75rem;
-  color: #7f8c8d;
-  display: block;
-  margin-top: 2px;
-  line-height: 1.2;
+  font-size: 0.8rem;
+  margin: 2px 0;
 }
-
-.modal-actions {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.start-game-btn {
-  background: #4CAF50;
-  color: white;
-  border: none;
-  padding: 12px 24px;
+.btn-warning, .btn-secondary, .btn-primary, .btn-info,.start-game-btn {
+  padding: 10px 20px;
   border-radius: 20px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 1rem;
-  transition: background-color 0.3s;
+  margin-top: 10px;
+  border: none;
+  font-size: 0.9rem;
   width: 100%;
-  max-width: 300px;
+  max-width: 200px;
+}
+.btn-warning {
+  background: #FF9800;
+  color: white;
+}
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+.btn-primary, .start-game-btn {
+  background: #4CAF50;
+  color: white;
+}
+.btn-save {
+  background: #2196F3;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  width: 100%;
+  max-width: 250px;
+}
+.btn-save:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+.result-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 15px 0;
+}
+.result-stat {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.result-message {
+  background: #E8F5E8;
+  padding: 12px;
+  border-radius: 6px;
+  margin: 12px 0;
+  color: #2E7D32;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.score-actions {
+  margin: 15px 0;
+}
+.login-warning {
+  color: #ff6b6b;
+  font-size: 0.8rem;
+  margin-top: 5px;
 }
 
-.start-game-btn:hover {
-  background: #45a049;
-}
-
-/* Tablets (768px+)  */
-@media (min-width: 768px) {
-  .color-guide {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+/* Responsive */
+@media (max-width: 768px) {
+  .initial-actions {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  .color-item {
-    padding: 12px;
-    gap: 12px;
+  .btn-start-main {
+    width: 100%;
+    max-width: 250px;
   }
-  
-  .color-sample {
-    width: 45px;
-    height: 45px;
-  }
-  
-  .color-info strong {
-    font-size: 0.95rem;
-  }
-  
-  .color-info p {
-    font-size: 0.85rem;
-  }
-}
-
-/* Desktop (1024px+)  */
-@media (min-width: 1024px) {
-  .modal-content {
-    max-width: 800px;
-    padding: 2rem;
-  }
-  
-  .color-guide {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-  }
-  
-  .color-item {
-    padding: 15px;
-    gap: 15px;
-  }
-  
-  .color-sample {
-    width: 50px;
-    height: 50px;
-  }
-}
-
-/* Móviles pequeños (480px o menos) */
-@media (max-width: 480px) {
-  .modal-content {
-    padding: 1.5rem;
-    width: 95%;
-  }
-  
   .color-guide {
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
   }
-  
-  .color-item {
-    padding: 8px;
-    gap: 8px;
-  }
-  
-  .color-sample {
-    width: 35px;
-    height: 35px;
-  }
-  
-  .color-info strong {
-    font-size: 0.85rem;
-  }
-  
-  .color-info p {
-    font-size: 0.75rem;
-  }
-  
-  .color-info small {
-    font-size: 0.7rem;
-  }
-}
-
-/* Móviles muy pequeños (360px o menos) */
-@media (max-width: 360px) {
-  .modal-content {
-    padding: 1rem;
-  }
-  
-  .color-guide {
-    gap: 6px;
-  }
-  
-  .color-item {
-    padding: 6px;
-    gap: 6px;
-  }
-  
-  .color-sample {
-    width: 30px;
-    height: 30px;
-  }
-  
-  .color-info strong {
-    font-size: 0.8rem;
-  }
-  
-  .color-info p {
-    font-size: 0.7rem;
-  }
-  
-  .color-info small {
-    font-size: 0.65rem;
-  }
-}
-
-@media (max-height: 500px) and (orientation: landscape) {
-  .modal-content {
-    max-height: 85vh;
-    padding: 1rem;
-  }
-  
-  .color-guide {
+  .botes {
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
   }
 }
-.modal-content::-webkit-scrollbar {
-  width: 6px;
-}
-
-.modal-content::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.modal-content::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 3px;
+@media (max-width: 480px) {
+  .color-guide {
+    grid-template-columns: 3, 1fr;
+  }
+  .botes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .modal-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  .modal-actions button {
+    width: 100%;
+    max-width: 250px;
+  }
 }
 </style>
